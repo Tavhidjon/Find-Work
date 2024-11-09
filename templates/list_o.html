@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+
+    <div class="a1">
+        <h1>Aplication</h1>
+        <div class="base">
+        <a href="{% url 'base' %}"><h3 class="sas">Home</h3></a>
+        <a href="{% url 'create_o' %}"><h3 class="sas">Add</h3></a>
+    </div>
+    </div>
+
+    <div class="b1">
+        <table>
+            <caption> <h3>Aplication</h3> </caption>
+            <tr>
+                <th>Message</th>
+                <th>User</th>
+                <th>Duraction</th>
+                <th>Status</th>
+                <th>Detail</th>
+            </tr>
+            {% for o in object_list %}
+            <tr>
+                <td>{{ o.message }}</td>
+                <td>{{ o.user }}</td>
+                <td>{{ o.duraction }}</td>
+                <td>{{ o.status }}</td>
+                <td><a href="{% url 'detail_o' o.id %}">Get</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+<br><br><br>
+
+</body>
+</html>

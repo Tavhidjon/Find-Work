@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+
+<header>
+    <div class="a111">
+        <h1>Welcome to Your Detail</h1> <br>
+        <a style="width: 50px; height: 30px; margin-top: 50px;" href="{% url 'list_m' %}">Menu</a>
+        <a style="width: 50px; height: 30px;margin-top: 50px" href="http://127.0.0.1:8000/delete_m/{{object.id}}">Delete</a>
+        <a style="width: 50px; height: 30px;margin-top: 50px" href="http://127.0.0.1:8000/update_m/{{object.id}}">Update</a>
+        <a style="width: 50px; height: 30px; margin-top: 50px;" href="{% url 'create_o' %}">Application</a>
+    </div>
+</header>
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h3>Title: {{ object.title }}</h3>
+        <h3>Description: {{ object.description }}</h3>
+        <h3>Location: {{ object.location }}</h3>
+        <h3>Video:</h3>
+        {% if object.video %}
+            <video width="100%" controls autoplay><source src="{{ object.video.url }}" type="video/mp4">Your browser does not support the video tag.</video>
+        {% else %}
+            <p>No video available</p>
+        {% endif %}
+        <h3>Created at: {{ object.create_at }}</h3>
+        <h3>Is Active: {{ object.is_active }}</h3>
+    </div>
+</div>
+{% endblock content %}
+
+</body>
+</html>

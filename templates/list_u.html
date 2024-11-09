@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">User</h1>
+    <div class="d-flex justify-content-start mb-3">
+        <a href="{% url 'base' %}" class="btn btn-primary me-2">Home</a>
+        <a href="{% url 'create_u' %}" class="btn btn-success">Add</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <caption><h3>User List</h3></caption>
+            <thead class="table-dark">
+                <tr>
+                    <th>Fullname</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Register Date</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in object_list %}
+                <tr>
+                    <td>{{ u.fullname }}</td>
+                    <td>{{ u.username }}</td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.phone_number }}</td>
+                    <td>{{ u.register_date }}</td>
+                    <td><a href="{% url 'detail_u' u.id %}" class="btn btn-info btn-sm">Get</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
